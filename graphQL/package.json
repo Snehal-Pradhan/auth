@@ -1,5 +1,5 @@
 {
-  "name": "session-cookie",
+  "name": "graphql",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,13 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "graphql": "^15.10.1",
+    "graphql-http": "^1.22.4",
+    "mongoose": "^8.16.0"
   }
 }
