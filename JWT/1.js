@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const verifyToken = (req, res, next) => {
-    // 1. Extract and validate Authorization header
     const authHeader = req.headers.authorization;
     if (!authHeader?.startsWith('Bearer ')) {
         return res.status(401).json({
@@ -23,14 +22,10 @@ const verifyToken = (req, res, next) => {
             error: "Missing or malformed authorization header"
         });
     }
-
-    // 2. Extract token
     const token = authHeader.split(' ')[1];
-
-    // 3. Verify token
     jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
         if (err) {
-            return res.status(403).json({ // 403 Forbidden (valid token but invalid/expired)
+            return res.status(403).json({
                 success: false,
                 error: "Invalid token",
                 details: err.message.includes("expired")
@@ -38,8 +33,6 @@ const verifyToken = (req, res, next) => {
                     : "Token verification failed"
             });
         }
-
-        // 4. Attach user data to request
         req.user = decoded;
         next();
     });
